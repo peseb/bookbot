@@ -1,6 +1,5 @@
-
+import sys
 from stats import char_count, sort_statistics, word_count
-
 
 def get_book_text(filepath):
     with open(filepath) as f:
@@ -23,7 +22,11 @@ def print_title(filepath: str):
     print(f"Analyzing book found at {filepath}...")
 
 def main():
-    filepath = "books/frankenstein.txt"
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    filepath = sys.argv[1]
     text = get_book_text(filepath)
     print_title(filepath)
 
